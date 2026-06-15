@@ -3,71 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Schedule Match</title>
+    <title>Match History</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <div class="container">
-    <h1>🏏 Cricket Match Management System</h1>
+
+    <h1>🏏 Match History</h1>
 
     <div class="card">
-        <h2>Schedule New Match</h2>
 
-        <input type="text" id="team1" placeholder="Enter Team 1 Name">
+        <div id="historyContainer"></div>
 
-        <input type="text" id="team2" placeholder="Enter Team 2 Name">
+        <br>
 
-        <input type="number" id="overs" placeholder="Enter Overs" min="1">
-
-        <button onclick="scheduleMatch()">Start Match</button>
-
-        <br><br>
-
-        <a href="history.html">
-            <button class="secondary-btn">Match History</button>
+        <a href="schedule.html">
+            <button class="secondary-btn">
+                Back To Schedule
+            </button>
         </a>
+
     </div>
+
 </div>
 
 <script>
-function scheduleMatch() {
 
-    const team1 = document.getElementById("team1").value.trim();
-    const team2 = document.getElementById("team2").value.trim();
-    const overs = parseInt(document.getElementById("overs").value);
+const history =
+JSON.parse(localStorage.getItem("matchHistory")) || [];
 
-    if (!team1 || !team2 || !overs) {
-        alert("Please fill all fields.");
-        return;
-    }
+const container =
+document.getElementById("historyContainer");
 
-    const matchData = {
-        team1,
-        team2,
-        overs,
+if(history.length === 0){
 
-        innings: 1,
+    container.innerHTML =
+    "<h3>No Matches Played Yet</h3>";
 
-        team1Score: 0,
-        team1Wickets: 0,
-        team1Balls: 0,
+}else{
 
-        team2Score: 0,
-        team2Wickets: 0,
-        team2Balls: 0,
+    history.reverse().forEach(match => {
 
-        target: 0,
-        matchFinished: false
-    };
+        container.innerHTML += `
+            <div class="history-card">
 
-    localStorage.setItem(
-        "currentMatch",
-        JSON.stringify(matchData)
-    );
+                <h3>
+                ${match.team1}
+                vs
+                ${match.team2}
+                </h3>
 
-    window.location.href = "scoreboard.html";
+                <p>
+                ${match.team1}: ${match.team1Score}
+                </p>
+
+                <p>
+                ${match.team2}: ${match.team2Score}
+                </p>
+
+                <p>
+                <strong>${match.result}</strong>
+                </p>
+
+            </div>
+        `;
+    });
+
 }
+
 </script>
 
 </body>
