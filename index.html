@@ -1,24 +1,68 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <title>Cricket Match Management</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Schedule Match</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="container">
-      <h1>Cricket Match Management System</h1>
+      <h1>🏏 Cricket Match Management System</h1>
 
-      <a href="schedule.html">
-        <button>Schedule Match</button>
-      </a>
+      <div class="card">
+        <h2>Schedule New Match</h2>
 
-      <a href="scoreboard.html">
-        <button>Live Scoreboard</button>
-      </a>
+        <input type="text" id="team1" placeholder="Enter Team 1 Name" />
 
-      <a href="history.html">
-        <button>Match History</button>
-      </a>
+        <input type="text" id="team2" placeholder="Enter Team 2 Name" />
+
+        <input type="number" id="overs" placeholder="Enter Overs" min="1" />
+
+        <button onclick="scheduleMatch()">Start Match</button>
+
+        <br /><br />
+
+        <a href="history.html">
+          <button class="secondary-btn">Match History</button>
+        </a>
+      </div>
     </div>
+
+    <script>
+      function scheduleMatch() {
+        const team1 = document.getElementById("team1").value.trim();
+        const team2 = document.getElementById("team2").value.trim();
+        const overs = parseInt(document.getElementById("overs").value);
+
+        if (!team1 || !team2 || !overs) {
+          alert("Please fill all fields.");
+          return;
+        }
+
+        const matchData = {
+          team1,
+          team2,
+          overs,
+
+          innings: 1,
+
+          team1Score: 0,
+          team1Wickets: 0,
+          team1Balls: 0,
+
+          team2Score: 0,
+          team2Wickets: 0,
+          team2Balls: 0,
+
+          target: 0,
+          matchFinished: false,
+        };
+
+        localStorage.setItem("currentMatch", JSON.stringify(matchData));
+
+        window.location.href = "scoreboard.html";
+      }
+    </script>
   </body>
 </html>

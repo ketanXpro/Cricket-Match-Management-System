@@ -1,51 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Match History</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>🏏 Match History</h1>
 
-<div class="container">
-
-    <h1>🏏 Match History</h1>
-
-    <div class="card">
-
+      <div class="card">
         <div id="historyContainer"></div>
 
-        <br>
+        <br />
 
-        <a href="schedule.html">
-            <button class="secondary-btn">
-                Back To Schedule
-            </button>
+        <a href="index.html">
+          <button class="secondary-btn">Back To Schedule</button>
         </a>
-
+      </div>
     </div>
 
-</div>
+    <script>
+      const history = JSON.parse(localStorage.getItem("matchHistory")) || [];
 
-<script>
+      const container = document.getElementById("historyContainer");
 
-const history =
-JSON.parse(localStorage.getItem("matchHistory")) || [];
-
-const container =
-document.getElementById("historyContainer");
-
-if(history.length === 0){
-
-    container.innerHTML =
-    "<h3>No Matches Played Yet</h3>";
-
-}else{
-
-    history.reverse().forEach(match => {
-
-        container.innerHTML += `
+      if (history.length === 0) {
+        container.innerHTML = "<h3>No Matches Played Yet</h3>";
+      } else {
+        history.reverse().forEach((match) => {
+          container.innerHTML += `
             <div class="history-card">
 
                 <h3>
@@ -68,11 +53,8 @@ if(history.length === 0){
 
             </div>
         `;
-    });
-
-}
-
-</script>
-
-</body>
+        });
+      }
+    </script>
+  </body>
 </html>
