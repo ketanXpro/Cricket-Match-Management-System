@@ -1,30 +1,57 @@
-<!doctype html>
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Scoreboard</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1>Live Scoreboard</h1>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-      <h2 id="scoreDisplay"></h2>
+<div class="container">
 
-      <div class="buttons">
-        <button onclick="addRun(0)">0</button>
-        <button onclick="addRun(1)">1</button>
-        <button onclick="addRun(2)">2</button>
+    <h1>🏏 Live Scoreboard</h1>
 
-        <button onclick="addRun(3)">3</button>
-        <button onclick="addRun(4)">4</button>
-        <button onclick="addRun(6)">6</button>
+    <div class="card">
 
-        <button onclick="extraRun('noBall')">No Ball</button>
-        <button onclick="extraRun('wide')">Wide Ball</button>
-        <button onclick="wicket()">Wicket</button>
-      </div>
+        <h2 id="matchTitle"></h2>
+
+        <div class="score-box">
+            <h3 id="team1Score"></h3>
+            <h3 id="team2Score"></h3>
+        </div>
+
+        <h2 id="inningsText"></h2>
+
+        <h2 id="targetText"></h2>
+
+        <div class="button-grid">
+
+            <button onclick="addRun(0)">0</button>
+            <button onclick="addRun(1)">1</button>
+            <button onclick="addRun(2)">2</button>
+
+            <button onclick="addRun(3)">3</button>
+            <button onclick="addRun(4)">4</button>
+            <button onclick="addRun(6)">6</button>
+
+            <button onclick="extraRun()">No Ball</button>
+            <button onclick="extraRun()">Wide Ball</button>
+            <button onclick="wicket()">Wicket</button>
+
+        </div>
+
+        <br>
+
+        <a href="schedule.html">
+            <button class="secondary-btn">New Match</button>
+        </a>
+
     </div>
 
-    <script src="script.js"></script>
-  </body>
+</div>
+
+<script src="script.js"></script>
+
+</body>
 </html>
